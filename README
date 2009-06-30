@@ -1,0 +1,39 @@
+CL-ALREF Utility
+  by Adlai, with a lot of assistance from stassats on #lisp,
+  and a bit of inspiration from Arc's ALREF.
+  Written on Tue, Jul 23, 2009
+
+Documentation:
+
+  #'ALREF returns the CDR of what you would get if you called
+  #'ASSOC on the same arguments.
+
+  (setf (alref item alist) foo) will:
+   - Add a key-value pair to the alist, if there is
+      none for ITEM yet.
+   - Change the value in the key-value pair of ITEM, if it
+      already exists.
+   - Delete the key-value pair of ITEM, if FOO is NIL.
+
+Changelog:
+
+  This is version 2.1
+
+  Version 1.0 used (defun (setf alref) ...), which led to a bug
+    when ALIST was NIL.
+
+  Version 2.0 uses a setf expansion to modify the setf macro
+    itself, thus generating code which can access and modify local
+    variables (ie, ALIST when it is bound by a LAMBDA). It also
+    used the with-gensyms macro in a way which was not portable,
+    specifically with regards to the CLISP implementation.
+
+  Version 2.1 sits in its own package, and exports 'ALREF. Just
+    use the :ALREF package and you will be able to use #'ALREF and
+    (setf (alref ...) ...)
+
+Feel free to copy this code and use it in your projects, but please
+  give credit where it's due. Also, please leave this README in place.
+
+If you have improvements to the code or find any bugs, please
+  let me know; I'm "Adlai" irc.freenode.net.
