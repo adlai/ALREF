@@ -9,7 +9,7 @@
   :version "2.1"
   :maintainer "Adlai"
   :author "Adlai"
-  :license "MIT"
+  :license "MIT-style; See README"
   :description "A utility for ALIST manipulation."
   :long-description
   "This package exports the ALREF symbol, along with two bits of
