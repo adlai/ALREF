@@ -6,7 +6,7 @@
 
 (defsystem alref
   :name "ALREF Utility"
-  :version "2.1"
+  :version "2.2"
   :maintainer "Adlai"
   :author "Adlai"
   :license "MIT-style; See README"
@@ -14,6 +14,6 @@
   :long-description
   "This package exports the ALREF symbol, along with two bits of
 behavior: a function #'alref, and a setf expansion. These work
-quite intuitively. See README for documentation."
+quite intuitively. See README for documentation and options."
   :serial T
   :components ((:file "alref")))
