@@ -20,7 +20,7 @@
       default))
 (define-setf-expander alref (item alist
                              &key (test *default-alref-test*)
-                                  (key  *default-alref-key*)
+                                  (key  *default-alref-key* unsafe)
                              &environment env)
   "Set the value corresponding to ITEM in ALIST."
   (multiple-value-bind (foo foo stores setter)
@@ -42,7 +42,7 @@
                      (,it (setf (cdr ,it) ,new))
                      (T (let ((,(car stores)
                                (acons ,g-item ,new ,g-alist)))
-                          (unless (eq ,g-key #'identity)
+                          (when ,unsafe
                             (cerror "Add the key/value pair anyways."
                                     "~&#'(setf alref) was provided a ~
                               :key argument. This is ignored~%  when ~

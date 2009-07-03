@@ -31,7 +31,7 @@ Documentation:
 
 Changelog:
 
-  This is version 2.3
+  This is version 2.3.1
 
   Version 1.0 used (defun (setf alref) ...), which led to a bug when
     ALIST was NIL.
@@ -48,8 +48,11 @@ Changelog:
     arguments.  It also added some error-checking code to warn of
     potentially buggy behavior.
 
-  Version 2.3 improves the customization options.  It also renamed the
-  default variables.
+  Version 2.3 improved the customization options.  It also renamed the
+    default variables, and introduced a bug.
+
+  Version 2.3.1 fixes that bug. Do not use version 2.3, as it will
+    fail repeatadly and spectacularly.
 
 Feel free to copy this code and use it in your projects, but please
   give credit where it's due. Also, please leave this README in place.
