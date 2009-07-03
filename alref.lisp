@@ -1,20 +1,26 @@
 (defpackage #:alref
   (:use :cl)
-  (:export :alref))
+  (:export :alref
+           :*default-alref-test*
+           :*default-alref-key*
+           :*default-alref-value*))
 (in-package :alref)
-(defvar *default-test* #.#'eql)
-(defvar *default-key* #.#'identity)
+(defvar *default-alref-test* #.#'eql)
+(defvar *default-alref-key* #.#'identity)
+(defvar *default-alref-value* NIL)
 (defmacro with-gensyms (vars &body body)
   `(let ,(loop for x in vars collect `(,x (gensym)))
      ,@body))
 (defun alref (item alist &key
-              (test *default-test*)
-              (key *default-key*))
+              (test *default-alref-test*)
+              (key *default-alref-key*)
+              (default *default-alref-value*))
   "Retreive the value corresponding to ITEM in ALIST."
-  (cdr (assoc item alist :test test :key key)))
+  (or (cdr (assoc item alist :test test :key key))
+      default))
 (define-setf-expander alref (item alist
-                             &key (test *default-test*)
-                             (key *default-key*)
+                             &key (test *default-alref-test*)
+                                  (key  *default-alref-key*)
                              &environment env)
   "Set the value corresponding to ITEM in ALIST."
   (multiple-value-bind (foo foo stores setter)

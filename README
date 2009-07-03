@@ -1,6 +1,6 @@
 CL-ALREF Utility
   by Adlai, with a lot of assistance from stassats on #lisp, and a bit
-  of inspiration from Arc's ALREF.  Written on Tue, Jul 23, 2009
+  of inspiration from Arc's ALREF.  Updated on Fri, Jul 3rd, 2009.
 
 Documentation:
 
@@ -10,7 +10,8 @@ Documentation:
     clone link is <git://github.com/adlai/ALREF.git>.
 
   #'ALREF returns the CDR of what you would get if you called #'ASSOC
-    on the same arguments.
+    on the same arguments.  If a :default argument is supplied, this
+    will be returned instead of NIL if no matching key is found.
 
   (setf (alref item alist) foo) will:
 
@@ -20,28 +21,35 @@ Documentation:
 
    - Delete the key-value pair of ITEM, if FOO is NIL.
 
-  It is possible to change the default values for :test and :key with
-    ALREF::*default-test* and ALREF::*default-key*.
+  It is possible to change the default values for :test, :key,
+    :default with three variables exported from the :ALREF package.
+    The variables, and their initial default values, are:
+
+    - ALREF:*default-alref-test*      defaults to #'eql
+    - ALREF:*default-alref-key*       defaults to #'identity
+    - ALREF:*default-alref-default*   defaults to NIL
 
 Changelog:
 
-  This is version 2.2
+  This is version 2.3
 
   Version 1.0 used (defun (setf alref) ...), which led to a bug when
     ALIST was NIL.
 
   Version 2.0 uses a setf expansion to modify the setf macro itself,
     thus generating code which can access and modify local variables
-    (ie, ALIST when it is bound by a LAMBDA). It also used the
+    (ie, ALIST when it is bound by a LAMBDA).  It also used the
     with-gensyms macro in a way which was not portable, specifically
     with regards to the CLISP implementation.
 
   Version 2.1 sat in its own package, and exported 'ALREF.
 
-  Version 2.2 has the ability to affect the defaults. If, for example,
-    you constantly do (alref ... :test #'string=), you can now just
-    (setf alref::*default-test* #'string=). Obviously, the default can
-    still be overridden by supplying a :test argument.
+  Version 2.2 allowed the user to customize the default key and test
+    arguments.  It also added some error-checking code to warn of
+    potentially buggy behavior.
+
+  Version 2.3 improves the customization options.  It also renamed the
+  default variables.
 
 Feel free to copy this code and use it in your projects, but please
   give credit where it's due. Also, please leave this README in place.
