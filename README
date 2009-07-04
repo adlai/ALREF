@@ -1,6 +1,6 @@
 CL-ALREF Utility
   by Adlai, with a lot of assistance from stassats on #lisp, and a bit
-  of inspiration from Arc's ALREF.  Updated on Fri, Jul 3rd, 2009.
+  of inspiration from Arc's ALREF.  Updated on Sun, Jul 5th, 2009.
 
 Documentation:
 
@@ -31,7 +31,7 @@ Documentation:
 
 Changelog:
 
-  This is version 2.3.1
+  This is version 2.3.2
 
   Version 1.0 used (defun (setf alref) ...), which led to a bug when
     ALIST was NIL.
@@ -51,8 +51,9 @@ Changelog:
   Version 2.3 improved the customization options.  It also renamed the
     default variables, and introduced a bug.
 
-  Version 2.3.1 fixes that bug. Do not use version 2.3, as it will
-    fail repeatadly and spectacularly.
+  Version 2.3.1 fixed that bug.
+
+  Version 2.3.2 fixes another bug, involving compatibility with SBCL.
 
 Feel free to copy this code and use it in your projects, but please
   give credit where it's due. Also, please leave this README in place.
