@@ -1,6 +1,7 @@
-CL-ALREF Utility
-  by Adlai, with a lot of assistance from stassats on #lisp, and a bit
-  of inspiration from Arc's ALREF.  Updated on Sun, Jul 5th, 2009.
+CL-ALREF Utility by Adlai
+
+  Many thanks to stassats on #lisp, Pascal J. Bourguignon, and also a
+  bit of inspiration from Arc's ALREF.  Updated on Sun, Jul 5th, 2009.
 
 Documentation:
 
@@ -31,7 +32,7 @@ Documentation:
 
 Changelog:
 
-  This is version 2.3.2
+  This is version 2.4.
 
   Version 1.0 used (defun (setf alref) ...), which led to a bug when
     ALIST was NIL.
@@ -53,7 +54,11 @@ Changelog:
 
   Version 2.3.1 fixed that bug.
 
-  Version 2.3.2 fixes another bug, involving compatibility with SBCL.
+  Version 2.3.2 had half of a bugfix for a more serious problem that
+    came from blurring the line between macro-expansion time and
+    evaluation time.
+
+  Version 2.4 completes that bugfix, and is thus a separate version.
 
 Feel free to copy this code and use it in your projects, but please
   give credit where it's due. Also, please leave this README in place.
