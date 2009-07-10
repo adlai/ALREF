@@ -6,7 +6,7 @@
 
 (defsystem alref
   :name "ALREF Utility"
-  :version "2.4"
+  :version "2.5"
   :maintainer "Adlai"
   :author "Adlai"
   :license "MIT-style; See README"

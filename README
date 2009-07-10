@@ -1,7 +1,7 @@
 CL-ALREF Utility by Adlai
 
   Many thanks to stassats on #lisp, Pascal J. Bourguignon, and also a
-  bit of inspiration from Arc's ALREF.  Updated on Sun, Jul 5th, 2009.
+  bit of inspiration from Arc's ALREF.  Updated on Fri, Jul 10th, 2009.
 
 Documentation:
 
@@ -32,7 +32,7 @@ Documentation:
 
 Changelog:
 
-  This is version 2.4.
+  This is version 2.5.
 
   Version 1.0 used (defun (setf alref) ...), which led to a bug when
     ALIST was NIL.
@@ -58,7 +58,10 @@ Changelog:
     came from blurring the line between macro-expansion time and
     evaluation time.
 
-  Version 2.4 completes that bugfix, and is thus a separate version.
+  Version 2.4 completed that bugfix.
+
+  Version 2.5 fixes a bug which would occur when the place 'alist
+    had to be setf-expanded itself. ALREF now plays nicely here too.
 
 Feel free to copy this code and use it in your projects, but please
   give credit where it's due. Also, please leave this README in place.
