@@ -7,7 +7,7 @@
 (in-package :alref)
 (defvar *default-alref-test* #'eql)
 (defvar *default-alref-key* #'identity)
-(defvar *default-alref-value* NIL)
+(defvar *default-alref-value* nil)
 (defmacro with-gensyms (vars &body body)
   `(let ,(loop for x in vars collect `(,x (gensym)))
      ,@body))
@@ -32,7 +32,7 @@
                             `(assoc ,item ,alist :test ,test :key ,key))
                       orig-vals)
               `(,new)
-              `(cond ((eq ,new NIL)
+              `(cond ((eq ,new nil)
                       (let ((,(car stores)
                              (delete ,g-item ,g-alist :test ,g-test
                                      :count 1 :key
@@ -41,7 +41,7 @@
                                                   (car pair))))))
                         ,setter))
                      (,it (setf (cdr ,it) ,new))
-                     (T (let ((,(car stores)
+                     (t (let ((,(car stores)
                                (acons ,g-item ,new ,g-alist)))
                           (when ,unsafe
                             (cerror "Add the key/value pair anyways."
