@@ -1,70 +1,109 @@
-CL-ALREF Utility by Adlai
+`"'Adlai's Utility ALREF,,, or "I learned nothing in a decade"
 
-  Many thanks to stassats on #lisp, Pascal J. Bourguignon, and also a
-  bit of inspiration from Arc's ALREF.  Updated on Fri, Jul 10th, 2009.
+  Many thanks to stassats and pjb, two IRC legends who advised
+  this clueless newbie in avoiding common bugs; and contrarian
+  inspiration from pg: http://www.arclanguage.org/item?id=9568
+
+Installation:
+
+  Please use a specific version of the software; it does not have to
+  be one that you typed yourself, nor one that is distinguishable by
+  symbolic expression hash functions, although you should be able to
+  explain the function to you parole officer even if it's been, say,
+  a dozen decades since you last saw each other,.. and that includes
+  the parole officer! If you must see parentheses somewhere, try:
+
+  (:use-package :alref), hunt and peck a copy, do whatever compiles!
 
 Documentation:
 
-  Just (:use-package :alref).
+  ALREF should behave roughly the same as calling CL:ASSOC with any
+  default arguments explicated; if a :default argument is supplied,
+  this will be returned instead of NIL if no matching key is found.
 
-  Please use the latest version, available through git. The public
-    clone link is <git://github.com/adlai/ALREF.git>.
+  (setf (ALREF key alist) value) expands to code that should:
 
-  #'ALREF returns the CDR of what you would get if you called #'ASSOC
-    on the same arguments.  If a :default argument is supplied, this
-    will be returned instead of NIL if no matching key is found.
+   - link key to value under that association list, if it's fresh;
 
-  (setf (alref item alist) foo) will:
+   - change the existing association, after the key is located;
 
-   - Add a key-value pair to the alist, if there is none for ITEM yet.
+   - and forget the association, instead of storing empty links!
 
-   - Change the value under the key ITEM, if it already exists.
+  It is possible to change the default values for :test, :key, and
+  :default with these variables, exported from the :ALREF package:
 
-   - Delete the key-value pair of ITEM, if FOO is NIL.
+    - ALREF:*default-alref-test*      defaults to #'CL:EQL
+    - ALREF:*default-alref-key*       defaults to #'CL:IDENTITY
+    - ALREF:*default-alref-default*   defaults to CL:NIL
 
-  It is possible to change the default values for :test, :key,
-    :default with three variables exported from the :ALREF package.
-    The variables, and their initial default values, are:
-
-    - ALREF:*default-alref-test*      defaults to #'eql
-    - ALREF:*default-alref-key*       defaults to #'identity
-    - ALREF:*default-alref-default*   defaults to NIL
+  The defaults are chosen so that the plausible expectation is
+  compliance with the standardized Common Lisp function.
 
 Changelog:
 
-  This is version 2.5.
+  This is version Five Halves, the first one denoted according to
+  the infinitely delayed and deeply misguided Rational Versioning,
+  invariably fixed by Radical Versioning, and then, Complications.
 
-  Version 1.0 used (defun (setf alref) ...), which led to a bug when
-    ALIST was NIL.
+  Previously, versions were numbered according to an underspecified,
+  numerically fogging, and naively implied fixed-point numbering. It
+  is now deprecated, and stating that "Production servers have been
+  upgraded to conform to ALREF 2.6" is likely to result in nervous
+  silences, squeaky silencers, and obscure jokes about Linux.
 
-  Version 2.0 uses a setf expansion to modify the setf macro itself,
-    thus generating code which can access and modify local variables
-    (ie, ALIST when it is bound by a LAMBDA).  It also used the
-    with-gensyms macro in a way which was not portable, specifically
-    with regards to the CLISP implementation.
+  Version 1.0 used (DEFUN (SETF ALREF) ...), an elementary failure.
 
-  Version 2.1 sat in its own package, and exported 'ALREF.
+  Version 2.0 used a setf expansion to modify the setf macro itself,
+    enabling code for editing bindings of local variables by macros;
+    although the common utility with-gensyms was written unportably!
+
+  Version 2.1 sat in its own package, exporting one symbol, "ALREF".
 
   Version 2.2 allowed the user to customize the default key and test
-    arguments.  It also added some error-checking code to warn of
-    potentially buggy behavior.
+    arguments and added error-checking code for unexpected behavior.
 
-  Version 2.3 improved the customization options.  It also renamed the
-    default variables, and introduced a bug.
+  Version 2.3 improved the customization options, renamed default
+    variables, and failed to introduce a new bug to the spectators.
 
-  Version 2.3.1 fixed that bug.
+  Version 2.3.1 fixed the subtle bug, recently introduced to readers
+  and compilers by the buggy preventative debugger's visionary dude.
 
   Version 2.3.2 had half of a bugfix for a more serious problem that
-    came from blurring the line between macro-expansion time and
-    evaluation time.
+    came from blurring the line between data, code, and time, yknow?
 
-  Version 2.4 completed that bugfix.
+  Version 2.4 dealt with the nastiness involved in fixing half a bug.
 
-  Version 2.5 fixes a bug which would occur when the place 'alist
-    had to be setf-expanded itself. ALREF now plays nicely here too.
+  Version 2.5 reduced unexpected interaction between the operator and
+  the compiler, liable to occur during a recursive setf expansion.
 
-Feel free to copy this code and use it in your projects, but please
-  give credit where it's due. Also, please leave this README in place.
+LEGAL
 
-If you have improvements to the code or find any bugs, please let me
-  know; I'm "Adlai" on irc.freenode.net.
+   ... aka COPYING, CONDUCT, COARSEPRINT, i.e.: READ THIS IF NO ELSE!
+
+  Feel free to copy this code and use it in your projects; if you are
+  required to provide documentation, PLEASE: leave monographs, emoji,
+  and autobiographies outside of actual CL:DOCUMENTATION strings, OK?
+
+  The use of a rhetorical question to end the legally unrequired junk
+  serves to imply, to a reader who consents by reading further, that,
+  should they actually attempt to interrogate me by any method other
+  than spoken conversation at ranges of fewer than than five metres,
+  they are quite likely to receive lots of free information, along
+  with complimentary insults, complementary lessons, and trailing
+  newlines, for unblocked devices neither burn out, nor fade away.
+
+  If you have improvements to the code or find any bugs, I'm often on
+  Freenode IRC, occasionally TripSit, often angry and rarely not afk.
+
+Qua?
+
+  Non, djnneparlpathd'autre langues; rien de nichts; mostly, English.
+
+  If you are confused as to why I spend time maintaining this README
+  for a function that I've neither called myself, nor reimplemented,
+  in the decade during which I learned absolutely nothing... there
+  are no palatable summaries, although you should at least be able
+  to find a fistful of aphorisms, a compass, and possibly even a
+  hyperlink to the hyperspec within this excellent document:
+
+   https://www.puercopop.com/In-Defense-of-the-Alist.html

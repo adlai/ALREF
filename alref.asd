@@ -1,19 +1,10 @@
-;;;; -*- Mode: Lisp; Syntax: ANSI-Common-Lisp; Base: 10 -*-
+;;;; -*- Mode: Lisp; Syntax: ANSI-Common-Lisp; Base: 36 -*-
 
-(defpackage #:alref-asd
-  (:use :cl :asdf))
-(in-package :alref-asd)
-
-(defsystem alref
-  :name "ALREF Utility"
-  :version "2.5"
-  :maintainer "Adlai"
-  :author "Adlai"
-  :license "MIT-style; See README"
-  :description "A utility for ALIST manipulation."
-  :long-description
-  "This package exports the ALREF symbol, along with two bits of
-behavior: a function #'alref, and a setf expansion. These work
-quite intuitively. See README for documentation and options."
-  :serial T
-  :components ((:file "alref")))
+(cl:defsystem "alref"                   ; lowercase improper noun
+  :name "Adlai's Utility ALREF"         ; "NEVER: GO FULL-RETARD"
+  :version "#.(/ 2/5)"                  ; yes, it crashes garbage
+  :maintainer "Adlai"                   ; Whom? Why'd I make this
+  :author #."Adlai"                     ; garbage, you made this!
+  :license "README"                     ; no pointers, only text;
+  :description "Case study: Common Lisp's generalized references"
+  :components ((:file "alref")))        ; and macro-writing macro
